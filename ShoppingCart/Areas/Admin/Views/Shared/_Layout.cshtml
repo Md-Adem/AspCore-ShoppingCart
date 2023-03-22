@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Area</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ShoppingCart.styles.css" asp-append-version="true" />
+
+    <!-- Favicon -->
+    <link href="~/shop/img/favicon.ico" rel="icon">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+   <link href="~/shop/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/shop/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- Topbar Start -->
+        <div class="container-fluid">
+            <div class="row border-bottom border-5 align-items-center py-3 px-xl-5" style="background-color:slategrey">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a asp-controller="Pages" asp-action="Dashboard" asp-area="Admin" class="text-decoration-none">
+                        <h3 class="m-0 display-5 font-weight-semi-bold"><span class="text-dark font-weight-bold border px-3 mr-1">E</span>Admin Dashboard</h3>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-6 text-center">
+                    <div class="">
+                        <a href="/" class="btn border text-dark active">Shop</a>
+                        <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn border text-dark">Pages</a>
+                        <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn border text-dark">Category</a>
+                        <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="btn border text-dark">Proudct</a>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Users" class="btn border text-dark">Users</a>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Roles" class="btn border text-dark">Roles</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6 text-right">
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <a href="#" class="dropdown-toggle btn border text-dark" data-toggle="dropdown">@User.Identity.Name</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a asp-controller="Account" asp-action="Edit" asp-area="" class="dropdown-item text-dark">
+                                Account
+                                <i class="fas fa-file"></i>
+                            </a>
+                            <a asp-controller="Account" asp-action="Logout" asp-area="" class="dropdown-item text-dark">
+                                Logout
+                                <i class="fas fa-lock-open"></i>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" class="btn border text-primary">
+                            <i class="fas fa-lock"></i>
+                            <span class="badge">Login</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 mt-5">
+            @RenderBody()
+        </main>
+    </div>
+
+   @* <footer class="border-top footer text-muted">
+        <div class="container text-center">
+            &copy; 2023 - ShoppingCart - Oromtec
+        </div>
+    </footer>*@
+   @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/shop/lib/easing/easing.min.js"></script>
+    <script src="~/shop/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/shop/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

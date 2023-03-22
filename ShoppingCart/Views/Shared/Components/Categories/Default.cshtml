@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Category>
+
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">All Products</a>
+    </li>
+
+    @foreach (var item in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-item nav-link" asp-controller="Home" asp-action="ProductsByCategory" asp-route-CategorySlug="@item.Slug">@item.Name</a>
+        </li>
+    }
+
+</ul>
+
